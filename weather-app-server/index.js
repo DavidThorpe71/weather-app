@@ -1,7 +1,9 @@
 const express = require("express");
-const port = 4000;
 const app = express();
 const bodyParser = require("body-parser");
+const axios = require("axios");
+
+const port = 4000;
 require("dotenv").config();
 
 app.use(bodyParser.json());
