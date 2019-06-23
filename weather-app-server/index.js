@@ -15,27 +15,26 @@ app.post("/weather", async (req, res) => {
   try {
     // Get the lat and lng for the requested location (received in the body of the request) from google geocoding api
     const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key=${MAPS_KEY}`;
-    // const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key="487569"`;
-    const mapsResult = await axios(mapsEndPoint).then(
-      res => res.data.results[0]
-    );
+    const mapsResult = await axios(mapsEndPoint);
 
     if (!mapsResult) {
-      throw new Error("no results came back");
+      throw new Error(`Could not find coordinates for ${requestedLocation}`);
     }
 
-    const location = mapsResult.formatted_address;
-    const { lat, lng } = mapsResult.geometry.location;
+    const location = mapsResult.data.results[0].formatted_address;
+    const { lat, lng } = mapsResult.data.results[0].geometry.location;
 
     // Get the current weather from the Dark Sky API
     const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${lng}`;
-    const darkSkyResult = await axios(darkSkyEndpoint)
-      .then(res => res.data.currently)
-      .catch(err => {
-        throw err;
-      });
+    const darkSkyResult = await axios(darkSkyEndpoint);
 
-    const { summary, temperature, icon } = darkSkyResult;
+    if (!darkSkyResult) {
+      throw new Error(
+        `no results were found from the Dark Sky API for lat: ${lat} and lng: ${lng}`
+      );
+    }
+
+    const { summary, temperature, icon } = darkSkyResult.data.currently;
 
     res.send({
       location,
@@ -44,6 +43,7 @@ app.post("/weather", async (req, res) => {
       icon
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.toString() });
   }
 });
