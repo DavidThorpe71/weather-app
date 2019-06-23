@@ -1,0 +1,86 @@
+body {
+  /* background-color: #70c3a7; */
+  background-color: #429c7e;
+  /* background-color: #708ec3; */
+}
+
+.App-header {
+  text-align: center;
+}
+
+/* Font styles */
+p {
+  color: #fff;
+}
+
+.header-content-wrapper {
+  color: #fff;
+  margin: 0 5px;
+}
+
+h1 {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 11px;
+}
+
+/* Styles for location select buttons */
+.location-select-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 5px;
+}
+
+button {
+  background: none;
+  border: 1px solid transparent;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Styles for the weather details */
+.weather-details-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+canvas {
+  margin: 5px;
+}
+
+.temp {
+  font-size: 50px;
+  margin: 0;
+}
+
+.selected {
+  border: 1px solid #fff;
+}
+
+.location {
+  font-size: 18px;
+  margin: 10px;
+}
+
+.no-location-text {
+  text-align: center;
+}
+
+.loading-circle {
+  margin: 40px 10px 10px 10px;
+}
