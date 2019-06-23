@@ -14,18 +14,16 @@ app.post("/weather", async (req, res) => {
   const { requestedLocation } = req.body;
   try {
     // Get the lat and lng for the requested location (received in the body of the request) from google geocoding api
-    // const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key=${MAPS_KEY}`;
-    const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key="487569"`;
-    const mapsResult = await axios(mapsEndPoint)
-      .then(res => res.data.results[0])
-      .catch(err => {
-        throw new Error(err);
-      });
+    const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key=${MAPS_KEY}`;
+    // const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key="487569"`;
+    const mapsResult = await axios(mapsEndPoint).then(
+      res => res.data.results[0]
+    );
 
     if (!mapsResult) {
       throw new Error("no results came back");
     }
-    console.log(mapsResult);
+
     const location = mapsResult.formatted_address;
     const { lat, lng } = mapsResult.geometry.location;
 

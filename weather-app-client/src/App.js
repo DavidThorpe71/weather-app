@@ -24,12 +24,13 @@ class App extends PureComponent {
       .then(res => res.json())
       .catch(err => this.setState({ error: err.error }));
     if (data.error) {
-      this.setState({
+      return this.setState({
         error: data.error
       });
     }
     const { icon, location, summary, temperature } = data;
-    this.setState({
+    return this.setState({
+      error: null,
       icon,
       location,
       summary,
