@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/DavidThorpe71/weather-app.git",
   "author": "David Thorpe <davidthorpe878@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "install-dependencies": "cd weather-app-server && yarn install && cd ../weather-app-client && yarn install",
+    "start": "yarn install-dependencies && concurrently \"cd weather-app-server && yarn run start\" \"cd weather-app-client && yarn run start\""
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
 }
