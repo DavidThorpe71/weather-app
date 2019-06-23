@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import ReactAnimatedWeather from "react-animated-weather";
 import "./App.css";
 
 class App extends PureComponent {
@@ -43,8 +44,16 @@ class App extends PureComponent {
             </button>
           ))}
           <p>{location}</p>
-          <p>{icon}</p>
           <p>{summary}</p>
+          <p>{icon.replace(/-/gi, "_").toUpperCase()}</p>
+          {icon && (
+            <ReactAnimatedWeather
+              icon={icon.replace(/-/gi, "_").toUpperCase()}
+              color="#000"
+              size={64}
+              animate={true}
+            />
+          )}
           <p>{temperature}</p>
         </header>
       </div>
