@@ -1,0 +1,50 @@
+body {
+  background-color: #70c3a7;
+}
+
+header.App-header {
+  text-align: center;
+}
+
+.location-select-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.weather-details-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+button {
+  background: none;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+p {
+  color: #fff;
+}
+
+.header-content-wrapper {
+  color: #fff;
+}
+
+h1 {
+  font-weight: 300;
+}
+
+button {
+  margin: 5px;
+}
+button:hover {
+  cursor: pointer;
+}

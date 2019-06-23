@@ -8,5 +8,4 @@
    1. Then `cd ../weather-app-client` and run `yarn install`
    1. Then run `yarn start` from the same directory
 
-1. To run application with single command:
-   `yarn start`
+1. To run application with single command: `yarn start` from root directory

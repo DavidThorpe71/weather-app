@@ -31,30 +31,49 @@ class App extends PureComponent {
 
   render() {
     const { icon, location, summary, temperature } = this.state;
-    const locations = ["London", "Paris", "New-York", "Singapore", "Sydney"];
+    const locations = ["London", "Paris", "New York", "Singapore", "Sydney"];
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Weather app</h1>
-          {locations.map(location => (
-            <button
-              onClick={() => this.getWeather({ requestedLocation: location })}
-            >
-              {location}
-            </button>
-          ))}
-          {location && <p>{location}</p>}
-          {summary && <p>{summary}</p>}
-          {icon && (
-            <ReactAnimatedWeather
-              icon={icon.replace(/-/gi, "_").toUpperCase()}
-              color="#000"
-              size={64}
-              animate={true}
-            />
-          )}
-          {temperature && <p>{temperature}&#176;F</p>}
+          <div className="header-content-wrapper">
+            <h1>Weather app</h1>
+          </div>
         </header>
+        <main>
+          <div className="location-select-wrapper">
+            {locations.map(item => (
+              <button
+                className={
+                  location.toLowerCase().includes(item.toLowerCase())
+                    ? "selected"
+                    : ""
+                }
+                key={item}
+                onClick={() => this.getWeather({ requestedLocation: item })}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <div className="weather-details-wrapper">
+            {!location && !summary && !icon && !temperature && (
+              <p>
+                Select a location from the list above to see the current weather
+              </p>
+            )}
+            {location && <p>{location}</p>}
+            {summary && <p>{summary}</p>}
+            {icon && (
+              <ReactAnimatedWeather
+                icon={icon.replace(/-/gi, "_").toUpperCase()}
+                color="#fff"
+                size={64}
+                animate={true}
+              />
+            )}
+            {temperature && <p>{temperature}&#176;F</p>}
+          </div>
+        </main>
       </div>
     );
   }
