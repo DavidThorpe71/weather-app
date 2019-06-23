@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import ReactAnimatedWeather from "react-animated-weather";
+import ReactLoading from "react-loading";
 import "./App.css";
 
 class App extends PureComponent {
@@ -9,10 +10,19 @@ class App extends PureComponent {
     location: "",
     summary: "",
     temperature: null,
-    error: null
+    error: null,
+    loading: false
   };
 
   getWeather = async ({ requestedLocation }) => {
+    this.setState({
+      loading: true,
+      error: null,
+      icon: "",
+      location: "",
+      summary: "",
+      temperature: null
+    });
     const data = await fetch("/weather", {
       method: "Post",
       headers: {
@@ -34,12 +44,13 @@ class App extends PureComponent {
       icon,
       location,
       summary,
-      temperature
+      temperature,
+      loading: false
     });
   };
 
   render() {
-    const { icon, location, summary, temperature, error } = this.state;
+    const { icon, location, summary, temperature, error, loading } = this.state;
     const locations = ["London", "Paris", "New York", "Singapore", "Sydney"];
     return (
       <div className="App">
@@ -71,11 +82,18 @@ class App extends PureComponent {
                 It looks like we are having some issues, please try again later
               </p>
             )}
-            {!error && !location && !summary && !icon && !temperature && (
-              <p className="no-location-text">
-                Select a location from the list above to see the current weather
-              </p>
-            )}
+            {!error &&
+              !loading &&
+              !location &&
+              !summary &&
+              !icon &&
+              !temperature && (
+                <p className="no-location-text">
+                  Select a location from the list above to see the current
+                  weather
+                </p>
+              )}
+            {loading && <ReactLoading type="spin" />}
             {location && <p className="location">{location}</p>}
             {temperature && <p className="temp">{temperature}&#176;F</p>}
             {icon && (
