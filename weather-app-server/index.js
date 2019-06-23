@@ -25,7 +25,7 @@ app.post("/weather", async (req, res) => {
     const { lat, lng } = mapsResult.data.results[0].geometry.location;
 
     // Get the current weather from the Dark Sky API
-    const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${lng}`;
+    const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${123}`;
     const darkSkyResult = await axios(darkSkyEndpoint);
 
     if (!darkSkyResult) {

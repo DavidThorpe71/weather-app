@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react";
-import ReactAnimatedWeather from "react-animated-weather";
-import ReactLoading from "react-loading";
 import "./App.css";
 import Error from "./components/Error";
 import WeatherDetails from "./components/WeatherDetails";
@@ -25,6 +23,7 @@ class App extends PureComponent {
       summary: "",
       temperature: null
     });
+
     const data = await fetch("/weather", {
       method: "Post",
       headers: {
@@ -32,9 +31,8 @@ class App extends PureComponent {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ requestedLocation })
-    })
-      .then(res => res.json())
-      .catch(err => this.setState({ error: err.error }));
+    }).then(res => res.json());
+    // .catch(err => this.setState({ error: err.error }));
     if (data.error) {
       return this.setState({
         error: data.error
