@@ -5,16 +5,22 @@ Application to display the current weather from 5 preset locations.
 User stories fulfilled by the application:
 
 1.
+
+```
 As a user
 When I visit the page
 I want to see a list of locations
 So that I know which locations are available
+```
 
 2.
+
+```
 As a user
 When I select a location
 I want to see the current weather
 So that I know what the weather is for the location I selected
+```
 
 Application uses the [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) to get the latitude and longitude for a given location and uses these coordinates to get the current weather from the [Dark Sky API](https://darksky.net/dev)
 
