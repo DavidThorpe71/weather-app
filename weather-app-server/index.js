@@ -19,6 +19,8 @@ app.post("/weather", async (req, res) => {
       throw err;
     });
 
+  const location = mapsResult.formatted_address;
+
   const { lat, lng } = mapsResult.geometry.location;
   const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${lng}`;
   const darkSkyResult = await axios(darkSkyEndpoint)
