@@ -41,10 +41,15 @@ p {
 
 h1 {
   font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 11px;
 }
 
 button {
   margin: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
 }
 button:hover {
   cursor: pointer;
@@ -56,5 +61,14 @@ button:hover {
 }
 
 .selected {
-  font-weight: 700;
+  border: 1px solid #fff;
+}
+
+.location {
+  font-size: 18px;
+  margin: 10px;
+}
+
+.no-location-text {
+  text-align: center;
 }

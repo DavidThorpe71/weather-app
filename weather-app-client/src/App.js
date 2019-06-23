@@ -57,7 +57,7 @@ class App extends PureComponent {
           </div>
           <div className="weather-details-wrapper">
             {!location && !summary && !icon && !temperature && (
-              <p>
+              <p className="no-location-text">
                 Select a location from the list above to see the current weather
               </p>
             )}
