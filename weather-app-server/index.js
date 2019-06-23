@@ -10,8 +10,15 @@ app.use(bodyParser.json());
 
 const { DARK_SKY_KEY } = process.env;
 
-app.get("/", (req, res) => {
-  res.send("Hello");
+app.get("/", async (req, res) => {
+  const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/42.3601,-71.0589`;
+  const darkSkyResult = await axios(darkSkyEndpoint)
+    .then(res => res.data)
+    .catch(err => {
+      throw err;
+    });
+
+  res.json({ darkSkyResult });
 });
 
 app.listen(port, () =>
