@@ -8,12 +8,20 @@ require("dotenv").config();
 
 app.use(bodyParser.json());
 
-const { DARK_SKY_KEY } = process.env;
+const { DARK_SKY_KEY, MAPS_KEY } = process.env;
 
 app.get("/", async (req, res) => {
-  const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/42.3601,-71.0589`;
+  const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address="London"&key=${MAPS_KEY}`;
+  const mapsResult = await axios(mapsEndPoint)
+    .then(res => res.data.results[0])
+    .catch(err => {
+      throw err;
+    });
+
+  const { lat, lng } = mapsResult.geometry.location;
+  const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${lng}`;
   const darkSkyResult = await axios(darkSkyEndpoint)
-    .then(res => res.data)
+    .then(res => res.data.currently)
     .catch(err => {
       throw err;
     });
