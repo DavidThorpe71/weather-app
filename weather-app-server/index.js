@@ -21,8 +21,12 @@ app.post("/weather", async (req, res) => {
       throw new Error(`Could not find coordinates for ${requestedLocation}`);
     }
 
-    const location = mapsResult.data.results[0].formatted_address;
-    const { lat, lng } = mapsResult.data.results[0].geometry.location;
+    const {
+      formatted_address: location,
+      geometry: {
+        location: { lat, lng }
+      }
+    } = mapsResult.data.results[0];
 
     // Get the current weather from the Dark Sky API
     const darkSkyEndpoint = `https://api.darksky.net/forecast/${DARK_SKY_KEY}/${lat},${lng}`;
