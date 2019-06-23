@@ -8,7 +8,8 @@ class App extends PureComponent {
     icon: "",
     location: "",
     summary: "",
-    temperature: null
+    temperature: null,
+    error: null
   };
 
   getWeather = async ({ requestedLocation }) => {
@@ -19,7 +20,14 @@ class App extends PureComponent {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ requestedLocation })
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .catch(err => this.setState({ error: err.error }));
+    if (data.error) {
+      this.setState({
+        error: data.error
+      });
+    }
     const { icon, location, summary, temperature } = data;
     this.setState({
       icon,
@@ -30,7 +38,7 @@ class App extends PureComponent {
   };
 
   render() {
-    const { icon, location, summary, temperature } = this.state;
+    const { icon, location, summary, temperature, error } = this.state;
     const locations = ["London", "Paris", "New York", "Singapore", "Sydney"];
     return (
       <div className="App">
@@ -44,6 +52,7 @@ class App extends PureComponent {
             {locations.map(item => (
               <button
                 className={
+                  location &&
                   location.toLowerCase().includes(item.toLowerCase())
                     ? "selected"
                     : ""
@@ -56,7 +65,10 @@ class App extends PureComponent {
             ))}
           </div>
           <div className="weather-details-wrapper">
-            {!location && !summary && !icon && !temperature && (
+            {error && (
+              <p>It seems we are having a problem please try again later</p>
+            )}
+            {!error && !location && !summary && !icon && !temperature && (
               <p className="no-location-text">
                 Select a location from the list above to see the current weather
               </p>
