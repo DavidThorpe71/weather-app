@@ -10,8 +10,9 @@ app.use(bodyParser.json());
 
 const { DARK_SKY_KEY, MAPS_KEY } = process.env;
 
-app.get("/", async (req, res) => {
-  const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address="London"&key=${MAPS_KEY}`;
+app.post("/weather", async (req, res) => {
+  const requestedLocation = "Singapore";
+  const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key=${MAPS_KEY}`;
   const mapsResult = await axios(mapsEndPoint)
     .then(res => res.data.results[0])
     .catch(err => {
@@ -26,7 +27,14 @@ app.get("/", async (req, res) => {
       throw err;
     });
 
-  res.json({ darkSkyResult });
+  const { summary, temperature, icon } = darkSkyResult;
+
+  res.send({
+    location,
+    summary,
+    temperature,
+    icon
+  });
 });
 
 app.listen(port, () =>
