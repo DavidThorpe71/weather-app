@@ -1,6 +1,7 @@
 body {
   /* background-color: #70c3a7; */
-  background-color: #708ec3;
+  background-color: #429c7e;
+  /* background-color: #708ec3; */
 }
 
 .App-header {
@@ -14,6 +15,7 @@ p {
 
 .header-content-wrapper {
   color: #fff;
+  margin: 0 5px;
 }
 
 h1 {
@@ -27,6 +29,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 5px;
 }
 
 button {
@@ -54,6 +57,10 @@ button:hover {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+}
+
+canvas {
+  margin: 5px;
 }
 
 .temp {
