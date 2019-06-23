@@ -32,7 +32,7 @@ class App extends PureComponent {
       },
       body: JSON.stringify({ requestedLocation })
     }).then(res => res.json());
-    // .catch(err => this.setState({ error: err.error }));
+
     if (data.error) {
       return this.setState({
         error: data.error
