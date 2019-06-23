@@ -61,17 +61,17 @@ class App extends PureComponent {
                 Select a location from the list above to see the current weather
               </p>
             )}
-            {location && <p>{location}</p>}
-            {summary && <p>{summary}</p>}
+            {location && <p className="location">{location}</p>}
+            {temperature && <p className="temp">{temperature}&#176;F</p>}
             {icon && (
               <ReactAnimatedWeather
                 icon={icon.replace(/-/gi, "_").toUpperCase()}
                 color="#fff"
-                size={64}
+                size={100}
                 animate={true}
               />
             )}
-            {temperature && <p>{temperature}&#176;F</p>}
+            {summary && <p>{summary}</p>}
           </div>
         </main>
       </div>

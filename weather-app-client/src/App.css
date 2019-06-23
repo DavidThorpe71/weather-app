@@ -1,5 +1,6 @@
 body {
-  background-color: #70c3a7;
+  /* background-color: #70c3a7; */
+  background-color: #708ec3;
 }
 
 header.App-header {
@@ -47,4 +48,13 @@ button {
 }
 button:hover {
   cursor: pointer;
+}
+
+.temp {
+  font-size: 50px;
+  margin: 0;
+}
+
+.selected {
+  font-weight: 700;
 }
