@@ -8,7 +8,7 @@ const WeatherDetails = props => {
     <>
       {loading && <ReactLoading className="loading-circle" type="spin" />}
       {location && <p className="location">{location}</p>}
-      {temperature && <p className="temp">{temperature}&#176;F</p>}
+      {temperature && <p className="temp">{temperature.toFixed(1)}&#176;F</p>}
       {icon && (
         <ReactAnimatedWeather
           icon={icon.replace(/-/gi, "_").toUpperCase()}
