@@ -10,14 +10,14 @@ class App extends PureComponent {
     temperature: null
   };
 
-  getWeather = async () => {
+  getWeather = async ({ requestedLocation }) => {
     const data = await fetch("/weather", {
       method: "Post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ requestedLocation: "Singapore" })
+      body: JSON.stringify({ requestedLocation })
     }).then(res => res.json());
     const { icon, location, summary, temperature } = data;
     this.setState({

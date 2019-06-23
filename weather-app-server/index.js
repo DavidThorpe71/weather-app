@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 const { DARK_SKY_KEY, MAPS_KEY } = process.env;
 
 app.post("/weather", async (req, res) => {
-  const requestedLocation = "Singapore";
+  const { requestedLocation } = req.body;
   const mapsEndPoint = `https://maps.googleapis.com/maps/api/geocode/json?address=${requestedLocation}&key=${MAPS_KEY}`;
   const mapsResult = await axios(mapsEndPoint)
     .then(res => res.data.results[0])
