@@ -66,7 +66,9 @@ class App extends PureComponent {
           </div>
           <div className="weather-details-wrapper">
             {error && (
-              <p>It seems we are having a problem please try again later</p>
+              <p>
+                It looks like we are having some issues, please try again later
+              </p>
             )}
             {!error && !location && !summary && !icon && !temperature && (
               <p className="no-location-text">
