@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 import ReactLoading from "react-loading";
 import "./App.css";
+import Error from "./components/Error";
+import WeatherDetails from "./components/WeatherDetails";
 
 class App extends PureComponent {
   state = {
@@ -77,11 +79,6 @@ class App extends PureComponent {
             ))}
           </div>
           <div className="weather-details-wrapper">
-            {error && (
-              <p>
-                It looks like we are having some issues, please try again later
-              </p>
-            )}
             {!error &&
               !loading &&
               !location &&
@@ -93,18 +90,16 @@ class App extends PureComponent {
                   weather
                 </p>
               )}
-            {loading && <ReactLoading type="spin" />}
-            {location && <p className="location">{location}</p>}
-            {temperature && <p className="temp">{temperature}&#176;F</p>}
-            {icon && (
-              <ReactAnimatedWeather
-                icon={icon.replace(/-/gi, "_").toUpperCase()}
-                color="#fff"
-                size={100}
-                animate={true}
+            {error && <Error />}
+            {!error && (
+              <WeatherDetails
+                loading={loading}
+                location={location}
+                temperature={temperature}
+                icon={icon}
+                summary={summary}
               />
             )}
-            {summary && <p>{summary}</p>}
           </div>
         </main>
       </div>

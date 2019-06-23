@@ -34,7 +34,7 @@ h1 {
 
 button {
   background: none;
-  border: none;
+  border: 1px solid transparent;
   color: #fff;
   text-transform: uppercase;
   font-weight: 300;
@@ -79,4 +79,8 @@ canvas {
 
 .no-location-text {
   text-align: center;
+}
+
+.loading-circle {
+  margin: 10px;
 }
