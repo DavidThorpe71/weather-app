@@ -43,9 +43,8 @@ class App extends PureComponent {
               {location}
             </button>
           ))}
-          <p>{location}</p>
-          <p>{summary}</p>
-          <p>{icon.replace(/-/gi, "_").toUpperCase()}</p>
+          {location && <p>{location}</p>}
+          {summary && <p>{summary}</p>}
           {icon && (
             <ReactAnimatedWeather
               icon={icon.replace(/-/gi, "_").toUpperCase()}
@@ -54,7 +53,7 @@ class App extends PureComponent {
               animate={true}
             />
           )}
-          <p>{temperature}</p>
+          {temperature && <p>{temperature}&#176;F</p>}
         </header>
       </div>
     );
