@@ -2,6 +2,14 @@ import React, { PureComponent } from "react";
 import "./App.css";
 
 class App extends PureComponent {
+  state = {
+    requestedLocation: "",
+    icon: "",
+    location: "",
+    summary: "",
+    temperature: null
+  };
+
   getWeather = async () => {
     const data = await fetch("/weather", {
       method: "Post",
@@ -11,15 +19,33 @@ class App extends PureComponent {
       },
       body: JSON.stringify({ requestedLocation: "Singapore" })
     }).then(res => res.json());
-    console.log({ data });
+    const { icon, location, summary, temperature } = data;
+    this.setState({
+      icon,
+      location,
+      summary,
+      temperature
+    });
   };
 
   render() {
+    const { icon, location, summary, temperature } = this.state;
+    const locations = ["London", "Paris", "New-York", "Singapore", "Sydney"];
     return (
       <div className="App">
         <header className="App-header">
-          <p>Weather app</p>
-          <button onClick={this.getWeather}>Get weather test</button>
+          <h1>Weather app</h1>
+          {locations.map(location => (
+            <button
+              onClick={() => this.getWeather({ requestedLocation: location })}
+            >
+              {location}
+            </button>
+          ))}
+          <p>{location}</p>
+          <p>{icon}</p>
+          <p>{summary}</p>
+          <p>{temperature}</p>
         </header>
       </div>
     );
